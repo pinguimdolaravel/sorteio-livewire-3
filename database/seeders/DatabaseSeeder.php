@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
          ]);
 
 
-         Candidate::factory()->count(10)->create([]);
+//         Candidate::factory()->count(10)->create([]);
     }
 }

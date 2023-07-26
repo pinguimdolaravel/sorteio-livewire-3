@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Candidate;
 use Illuminate\Contracts\View\View;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Sorteio extends Component
@@ -15,10 +16,11 @@ class Sorteio extends Component
         return view('livewire.sorteio');
     }
 
+    #[On('candidate::created')]
     public function run(): void
     {
         $winner = Candidate::query()->inRandomOrder()->first();
 
-        $this->winner = $winner->name;
+        $this->winner = $winner?->name;
     }
 }
