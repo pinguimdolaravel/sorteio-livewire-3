@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Candidate;
 use App\Models\User;
+use App\Models\Winner;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -28,7 +29,9 @@ class Sorteio extends Component
 
     public function render(): View
     {
-        return view('livewire.sorteio');
+        return view('livewire.sorteio', [
+            'winners' => Winner::query()->get(),
+        ]);
     }
 
     #[On('candidate::created')]
@@ -42,6 +45,10 @@ class Sorteio extends Component
         }
 
         $winner = User::query()->inRandomOrder()->first();
+
+        Winner::create([
+            'github_user' => $winner->github_user,
+        ]);
 
         $this->winner = $winner?->name;
 
