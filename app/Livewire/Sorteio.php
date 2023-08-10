@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Candidate;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -33,14 +34,14 @@ class Sorteio extends Component
     #[On('candidate::created')]
     public function run(): void
     {
-        $candidates = Candidate::query()->inRandomOrder()->get();
+        $candidates = User::query()->inRandomOrder()->get();
 
         foreach ($candidates as $candidate) {
             $this->stream('winner', $candidate->name, true);
             usleep(7000);
         }
 
-        $winner = Candidate::query()->inRandomOrder()->first();
+        $winner = User::query()->inRandomOrder()->first();
 
         $this->winner = $winner?->name;
 

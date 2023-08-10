@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +19,33 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    Auth::loginUsingId(1);
-
     return view('welcome');
+})->middleware(['auth'])->name('home');
+
+Route::get('/github/login', function () {
+    return Socialite::driver('github')->redirect();
+})->name('github.login');
+
+Route::get('/github/callback', function () {
+    $githubUser = Socialite::driver('github')->user();
+
+    /** @var User $user */
+    $user = User::query()
+        ->updateOrCreate([
+            'github_user' => $githubUser->getNickname()
+        ],[
+            'name' => $githubUser->getName(),
+            'email' => $githubUser->getEmail(),
+        ]);
+
+    Auth::login($user);
+
+    return redirect(RouteServiceProvider::HOME);
 });
+
+Route::view('sorteio', 'sorteio')
+    ->middleware(['auth', \App\Http\Middleware\JustMeMiddleware::class])
+    ->name('sorteio');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
