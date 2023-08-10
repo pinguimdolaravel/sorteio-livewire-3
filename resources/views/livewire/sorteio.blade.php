@@ -1,6 +1,8 @@
 <div>
-    <div class="rounded bg-green-200 border-2 border-green-600 text-center p-10 text-green-700 font-bold text-4xl">
-        {{ $winner }}
+    <div
+         class="rounded bg-green-200 border-2 border-green-600 text-center p-10 text-green-700 font-bold text-4xl"
+    >
+        <span wire:stream="winner">{{ $winner }}</span>
     </div>
 
     <button wire:click="run" class="
