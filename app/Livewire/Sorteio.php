@@ -37,13 +37,13 @@ class Sorteio extends Component
 
         foreach ($candidates as $candidate) {
             $this->stream('winner', $candidate->name, true);
-            usleep(3000);
+            usleep(7000);
         }
 
         $winner = Candidate::query()->inRandomOrder()->first();
 
         $this->winner = $winner?->name;
-        
+
         $this->js('confetti()');
     }
 }
