@@ -18,9 +18,7 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware(['auth'])->name('home');
+Route::view('/', 'dashboard')->middleware(['auth'])->name('home');
 
 Route::get('/github/login', function () {
     return Socialite::driver('github')->redirect();
@@ -46,10 +44,6 @@ Route::get('/github/callback', function () {
 Route::view('sorteio', 'sorteio')
     ->middleware(['auth', \App\Http\Middleware\JustMeMiddleware::class])
     ->name('sorteio');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
