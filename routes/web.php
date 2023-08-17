@@ -32,7 +32,7 @@ Route::get('/github/callback', function () {
         ->updateOrCreate([
             'github_user' => $githubUser->getNickname()
         ],[
-            'name' => $githubUser->getName(),
+            'name' => $githubUser->getName() ?? $githubUser->getNickname(),
             'email' => $githubUser->getEmail(),
         ]);
 
