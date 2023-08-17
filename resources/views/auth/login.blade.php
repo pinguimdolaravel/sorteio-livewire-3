@@ -1,7 +1,7 @@
 <x-guest-layout>
 
     <x-primary-button href="{{ route('github.login') }}" class="cursor-pointer">
-        Login
+        Quero participar do sorteio!!
     </x-primary-button>
 
 </x-guest-layout>
