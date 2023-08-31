@@ -21,18 +21,11 @@ use Laravel\Socialite\Facades\Socialite;
 Route::view('/', 'dashboard')->middleware(['auth'])->name('home');
 
 Route::get('/github/login', function () {
-
     return Socialite::driver('github')->redirect();
 })->name('github.login');
 
 Route::get('/github/callback', function () {
-
-
     $githubUser = Socialite::driver('github')->user();
-
-    if($githubUser->getNickname() != 'r2luna') {
-        return ['acabou o tempo'];
-    }
 
     /** @var User $user */
     $user = User::query()
