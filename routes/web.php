@@ -21,6 +21,8 @@ use Laravel\Socialite\Facades\Socialite;
 Route::view('/', 'dashboard')->middleware(['auth'])->name('home');
 
 Route::get('/github/login', function () {
+    return ['acabouuuuuuu, chegou tarde campeão'];
+
     return Socialite::driver('github')->redirect();
 })->name('github.login');
 

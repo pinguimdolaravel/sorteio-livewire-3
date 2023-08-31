@@ -37,7 +37,9 @@ class Sorteio extends Component
     #[On('candidate::created')]
     public function run(): void
     {
-        $candidates = User::query()->inRandomOrder()->get();
+        $candidates = User::query()
+            ->where('github_user', '!=', 'r2luna')
+            ->inRandomOrder()->get();
 
         foreach ($candidates as $candidate) {
             $this->stream('winner', $candidate->name, true);
