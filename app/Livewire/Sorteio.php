@@ -39,14 +39,20 @@ class Sorteio extends Component
     {
         $candidates = User::query()
             ->where('github_user', '!=', 'r2luna')
-            ->inRandomOrder()->get();
+            ->whereNotIn('github_user', Winner::all()->pluck('github_user'))
+            ->inRandomOrder()
+            ->get();
 
         foreach ($candidates as $candidate) {
             $this->stream('winner', $candidate->name, true);
             usleep(7000);
         }
 
-        $winner = User::query()->inRandomOrder()->first();
+        $winner = User::query()
+            ->where('github_user', '!=', 'r2luna')
+            ->whereNotIn('github_user', Winner::all()->pluck('github_user'))
+            ->inRandomOrder()
+            ->first();
 
         Winner::create([
             'github_user' => $winner->github_user,
