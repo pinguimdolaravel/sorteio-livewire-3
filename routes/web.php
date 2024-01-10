@@ -30,8 +30,8 @@ Route::get('/github/callback', function () {
     /** @var User $user */
     $user = User::query()
         ->updateOrCreate([
-            'github_user' => $githubUser->getNickname()
-        ],[
+            'github_user' => $githubUser->getNickname(),
+        ], [
             'name' => $githubUser->getName() ?? $githubUser->getNickname(),
             'email' => $githubUser->getEmail(),
         ]);
@@ -42,7 +42,7 @@ Route::get('/github/callback', function () {
 });
 
 Route::view('sorteio', 'sorteio')
-    ->middleware(['auth', \App\Http\Middleware\JustMeMiddleware::class])
+    // ->middleware(['auth', \App\Http\Middleware\JustMeMiddleware::class])
     ->name('sorteio');
 
 Route::middleware('auth')->group(function () {

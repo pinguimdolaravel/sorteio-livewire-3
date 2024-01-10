@@ -9,7 +9,7 @@ class JustMeMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        abort_unless($request->user()->github_user === 'r2luna', 403);
+        // abort_unless($request->user()->github_user === 'r2luna', 403);
 
         return $next($request);
     }
