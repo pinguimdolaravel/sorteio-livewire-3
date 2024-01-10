@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +17,8 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::view('/', 'dashboard')->middleware(['auth'])->name('home');
+Route::redirect('/', '/sorteio');
+// Route::view('/', 'dashboard')->middleware(['auth'])->name('home');
 
 Route::get('/github/login', function () {
     return Socialite::driver('github')->redirect();
@@ -44,11 +44,5 @@ Route::get('/github/callback', function () {
 Route::view('sorteio', 'sorteio')
     // ->middleware(['auth', \App\Http\Middleware\JustMeMiddleware::class])
     ->name('sorteio');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 require __DIR__.'/auth.php';
