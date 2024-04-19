@@ -19,8 +19,8 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'github_user' => fake()->userName(),
-            'avatar' => fake()->imageUrl(),
+//            'github_user' => fake()->userName(),
+//            'avatar' => fake()->imageUrl(),
         ];
     }
 

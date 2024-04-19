@@ -9,7 +9,8 @@ return new class extends Migration {
     {
         Schema::create('winners', function (Blueprint $table) {
             $table->id();
-            $table->string('github_user');
+            $table->string('name');
+            $table->string('email');
             $table->timestamps();
         });
     }
