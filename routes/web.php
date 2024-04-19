@@ -17,8 +17,8 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::redirect('/', '/sorteio');
-// Route::view('/', 'dashboard')->middleware(['auth'])->name('home');
+// Route::redirect('/', '/sorteio');
+Route::view('/', 'dashboard')->middleware(['auth'])->name('home');
 
 Route::get('/github/login', function () {
     return Socialite::driver('github')->redirect();
@@ -42,7 +42,7 @@ Route::get('/github/callback', function () {
 });
 
 Route::view('sorteio', 'sorteio')
-    // ->middleware(['auth', \App\Http\Middleware\JustMeMiddleware::class])
+    ->middleware(['auth', \App\Http\Middleware\JustMeMiddleware::class])
     ->name('sorteio');
 
 require __DIR__.'/auth.php';
