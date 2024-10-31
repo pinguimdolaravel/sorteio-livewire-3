@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PosLoginController;
+use App\Http\Controllers\SorteioController;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
@@ -45,9 +47,8 @@ Route::get('/github/callback', function () {
     return redirect(RouteServiceProvider::HOME);
 });
 
-Route::view('/', 'sorteio')
-    ->middleware(['auth'])
-    ->name('sorteio');
+Route::get('/', PosLoginController::class)->middleware('auth')->name('home');
+Route::get('/sorteio', SorteioController::class)->middleware('auth')->name('sorteio');
 
 
 Route::get('/logout', fn() => Auth::logout())
