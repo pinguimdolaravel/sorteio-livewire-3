@@ -17,13 +17,12 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-// Route::redirect('/', '/sorteio');
-Route::get('/', function() {
-    $user = User::whereEmail('rafael@pinguim.academy')->first();
-    Auth::login($user);
-
-    return to_route('sorteio');
-})->name('home');
+//Route::get('/', function() {
+//    $user = User::whereEmail('rafael@pinguim.academy')->first();
+//    Auth::login($user);
+//
+//    return to_route('sorteio');
+//})->name('home');
 
 Route::get('/github/login', function () {
     return Socialite::driver('github')->redirect();
@@ -46,8 +45,13 @@ Route::get('/github/callback', function () {
     return redirect(RouteServiceProvider::HOME);
 });
 
-Route::view('sorteio', 'sorteio')
+Route::view('/', 'sorteio')
     ->middleware(['auth'])
     ->name('sorteio');
 
-require __DIR__.'/auth.php';
+
+Route::get('/logout', fn() => Auth::logout())
+    ->name('logout');
+
+
+require_once __DIR__ . '/auth.php';
