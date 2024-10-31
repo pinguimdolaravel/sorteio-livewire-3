@@ -54,6 +54,11 @@ class Sorteio extends Component
             ->inRandomOrder()
             ->first();
 
+        if(!$winner) {
+            $this->winner = 'Nenhum vencedor encontrado';
+            return;
+        }
+
         Winner::create([
             'name' => $winner->name,
             'email' => $winner->email,
