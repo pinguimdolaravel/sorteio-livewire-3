@@ -38,18 +38,18 @@ class Sorteio extends Component
     public function run(): void
     {
         $candidates = User::query()
-            ->where('email', '!=', 'rafael@devsquad.com')
+            ->where('email', '!=', config('sorteio.admin.email'))
             ->whereNotIn('email', Winner::all()->pluck('email'))
             ->inRandomOrder()
             ->get();
 
         foreach ($candidates as $candidate) {
-            $this->stream('winner', $candidate->name, true);
             usleep(7000);
+            $this->stream('winner', $candidate->name, true);
         }
 
         $winner = User::query()
-            ->where('email', '!=', 'rafael@devsquad.com')
+            ->where('email', '!=', config('sorteio.admin.email'))
             ->whereNotIn('email', Winner::all()->pluck('email'))
             ->inRandomOrder()
             ->first();
