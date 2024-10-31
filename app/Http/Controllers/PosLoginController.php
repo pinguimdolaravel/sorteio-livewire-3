@@ -6,7 +6,7 @@ class PosLoginController extends Controller
 {
     public function __invoke()
     {
-        if(auth()->id == 1) {
+        if(auth()->id() == 1) {
             return to_route('sorteio');
         }
 
