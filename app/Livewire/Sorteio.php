@@ -6,6 +6,7 @@ use App\Models\Candidate;
 use App\Models\User;
 use App\Models\Winner;
 use Illuminate\Contracts\View\View;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -17,6 +18,7 @@ class Sorteio extends Component
     {
         sleep(1);
     }
+
 
     public function placeholder(): string
     {
