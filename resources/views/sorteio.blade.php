@@ -2,7 +2,7 @@
     <div class="text-center text-3xl text-slate-300 font-bold font-mono underline">
         https://sorteio.dolaravel.com/
     </div>
-    <div class="text-center text-3xl text-slate-300 font-bold">
+    <div class="text-center text-3xl mt-4 text-slate-300 font-bold">
         🐧 Sorteio para 10K 🐧
     </div>
     <div class="py-12" >
