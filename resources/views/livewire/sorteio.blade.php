@@ -16,7 +16,7 @@
 
     @foreach($winners as $winner)
         <div class="rounded bg-green-200 border-2 border-green-600 text-center p-10 text-green-700 font-bold text-4xl">
-           {{ $winner->id }}.  {{ $winner->name }}
+           {{ $loop->index }}.  {{ $winner->name }}
         </div>
     @endforeach
 
