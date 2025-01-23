@@ -1,4 +1,7 @@
 <x-app-layout>
+    <div class="text-center text-3xl text-slate-300 font-bold font-mono underline">
+        https://sorteio.dolaravel.com/sorteio
+    </div>
     <div class="text-center text-3xl text-slate-300 font-bold">
         🐧 Sorteio para 10K 🐧
     </div>
