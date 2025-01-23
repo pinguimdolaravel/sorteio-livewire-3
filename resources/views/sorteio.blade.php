@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="text-center text-3xl text-slate-300 font-bold">
-        🐧 Sorteio para PHP Conference Brasil 2024 🐧
+        🐧 Sorteio para 10K 🐧
     </div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-y-8">
