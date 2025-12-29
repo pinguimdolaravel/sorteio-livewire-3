@@ -2,11 +2,9 @@
 
 namespace App\Livewire;
 
-use App\Models\Candidate;
 use App\Models\User;
 use App\Models\Winner;
 use Illuminate\Contracts\View\View;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -18,7 +16,6 @@ class Sorteio extends Component
     {
         sleep(1);
     }
-
 
     public function placeholder(): string
     {
@@ -32,7 +29,7 @@ class Sorteio extends Component
     public function render(): View
     {
         return view('livewire.sorteio', [
-            'winners' => Winner::query()->get(),
+            'winners' => Winner::query()->latest()->get(),
         ]);
     }
 
@@ -56,8 +53,9 @@ class Sorteio extends Component
             ->inRandomOrder()
             ->first();
 
-        if(!$winner) {
+        if (! $winner) {
             $this->winner = 'Nenhum vencedor encontrado';
+
             return;
         }
 
